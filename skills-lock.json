@@ -25,6 +25,12 @@
       "skillPath": "skills/atlassian-mcp/SKILL.md",
       "computedHash": "4513b7e0d937979a80b774ef9220b0074c5c4230ea5cbb39cca4f1c402529491"
     },
+    "brandkit": {
+      "source": "Leonxlnx/taste-skill",
+      "sourceType": "github",
+      "skillPath": "skills/brandkit/SKILL.md",
+      "computedHash": "b63012f3c3d21197e0185d3e9cc7ec40c589fb10e0b5a32a561739de31aa3f20"
+    },
     "chaos-engineer": {
       "source": "jeffallan/claude-skills",
       "sourceType": "github",
@@ -79,6 +85,12 @@
       "skillPath": "skills/debugging-wizard/SKILL.md",
       "computedHash": "9f39c248ae9588423cd12ea5197adf1530d7308eaf51a6d018ad08d52658a2ed"
     },
+    "design-taste-frontend": {
+      "source": "Leonxlnx/taste-skill",
+      "sourceType": "github",
+      "skillPath": "skills/taste-skill/SKILL.md",
+      "computedHash": "9d1e82c5c409d2b0247245a005bc0f7e4447c0999b78dcea60f568c1ba4a6694"
+    },
     "devops-engineer": {
       "source": "jeffallan/claude-skills",
       "sourceType": "github",
@@ -127,6 +139,12 @@
       "skillPath": "skills/flutter-expert/SKILL.md",
       "computedHash": "c7849f39cf34d91999f573b8ad39315dd68c7717bcd38c42b5e49cd83785d9c1"
     },
+    "full-output-enforcement": {
+      "source": "Leonxlnx/taste-skill",
+      "sourceType": "github",
+      "skillPath": "skills/output-skill/SKILL.md",
+      "computedHash": "26bd29ce4c5e02c7666b2d503609bf466bd32290822e91f0e984147048dbb924"
+    },
     "fullstack-guardian": {
       "source": "jeffallan/claude-skills",
       "sourceType": "github",
@@ -144,6 +162,12 @@
       "sourceType": "github",
       "skillPath": "skills/golang-pro/SKILL.md",
       "computedHash": "12b4cac8f65228f82cbc26f0da9232aba87ffa45ccd01afa3998fb8ec61dc288"
+    },
+    "gpt-taste": {
+      "source": "Leonxlnx/taste-skill",
+      "sourceType": "github",
+      "skillPath": "skills/gpt-tasteskill/SKILL.md",
+      "computedHash": "cc8f0c601d8240a124e1d11634351a2be7b8a72fd807c75e5b6bf7afcd5ddee0"
     },
     "graphql-architect": {
       "source": "jeffallan/claude-skills",
@@ -199,6 +223,36 @@
       "skillPath": "skills/gsap-utils/SKILL.md",
       "computedHash": "1ab2387f6e694718a4f1b5acf2a4ab16e1b884c3428adf5f6b26d830f00826cf"
     },
+    "high-end-visual-design": {
+      "source": "Leonxlnx/taste-skill",
+      "sourceType": "github",
+      "skillPath": "skills/soft-skill/SKILL.md",
+      "computedHash": "7db385e4c5370e5a7fca9704a1361b056e4504ea6a03924bb86f33a4f00b5c73"
+    },
+    "image-to-code": {
+      "source": "Leonxlnx/taste-skill",
+      "sourceType": "github",
+      "skillPath": "skills/image-to-code-skill/SKILL.md",
+      "computedHash": "58517b03b2a01f4c9ba65861559d03df931400871bbc200978c975b24bb92c73"
+    },
+    "imagegen-frontend-mobile": {
+      "source": "Leonxlnx/taste-skill",
+      "sourceType": "github",
+      "skillPath": "skills/imagegen-frontend-mobile/SKILL.md",
+      "computedHash": "9ab7f4f6ce66a3cff02bbf5894e5bd5af50bf5d6ef0adffdc88e8fab772fe44f"
+    },
+    "imagegen-frontend-web": {
+      "source": "Leonxlnx/taste-skill",
+      "sourceType": "github",
+      "skillPath": "skills/imagegen-frontend-web/SKILL.md",
+      "computedHash": "65f5ae59fa317567809438310b1c54f78cd133426deb43e4d3d4ca4c8f541628"
+    },
+    "industrial-brutalist-ui": {
+      "source": "Leonxlnx/taste-skill",
+      "sourceType": "github",
+      "skillPath": "skills/brutalist-skill/SKILL.md",
+      "computedHash": "8fc355c4aadb7d29c53ca28bc41be3cd6eea765d121e3737c4dc2d0f90a8effa"
+    },
     "java-architect": {
       "source": "jeffallan/claude-skills",
       "sourceType": "github",
@@ -246,6 +300,12 @@
       "sourceType": "github",
       "skillPath": "skills/microservices-architect/SKILL.md",
       "computedHash": "674b7d4c18eb009295213cbb49ccdc112db1d2f60bb65848ceb8771bdc69a25f"
+    },
+    "minimalist-ui": {
+      "source": "Leonxlnx/taste-skill",
+      "sourceType": "github",
+      "skillPath": "skills/minimalist-skill/SKILL.md",
+      "computedHash": "08873a3131d3be27bef9bf3304b310b16b44ca6e3561aebe532797be3443f6bd"
     },
     "ml-pipeline": {
       "source": "jeffallan/claude-skills",
@@ -331,6 +391,12 @@
       "skillPath": "skills/react-native-expert/SKILL.md",
       "computedHash": "f617f83be990728fef1ea2192c9b8ae85ef2c362e97f18782438f8bab357b02a"
     },
+    "redesign-existing-projects": {
+      "source": "Leonxlnx/taste-skill",
+      "sourceType": "github",
+      "skillPath": "skills/redesign-skill/SKILL.md",
+      "computedHash": "b405eee0e0e80fc243f731d9aa368bca307e356db7e6157d27101d369dac6726"
+    },
     "rust-engineer": {
       "source": "jeffallan/claude-skills",
       "sourceType": "github",
@@ -390,6 +456,12 @@
       "sourceType": "github",
       "skillPath": "skills/sre-engineer/SKILL.md",
       "computedHash": "f3bcde0381f316487e2475f01ed6951d6e1d5636c46c807c29f5efc5a802381e"
+    },
+    "stitch-design-taste": {
+      "source": "Leonxlnx/taste-skill",
+      "sourceType": "github",
+      "skillPath": "skills/stitch-skill/SKILL.md",
+      "computedHash": "3aa58992f0fd9673b975cd48cd4f8ae4b4976fd5cdd9f20e26d3d447aee317fb"
     },
     "swift-expert": {
       "source": "jeffallan/claude-skills",
