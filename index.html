@@ -1,0 +1,1405 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bodegas Monasterio — Vino que nace aquí. Mesa puesta también.</title>
+<meta name="description" content="Bodegas Monasterio. Restaurante y bodega familiar desde 1949 en el valle. Vinos de casa, cocina de producto, catas guiadas y eventos privados.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="assets/brand.png">
+<link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+<style>
+:root{
+  --color-primary:#5C1A1B;
+  --color-primary-soft:#7A2A2B;
+  --color-bg:#F2E8D5;
+  --color-bg-warm:#E8D9BC;
+  --color-text:#2A1410;
+  --color-text-soft:#5a3a30;
+  --color-accent:#A8794A;
+  --color-line:rgba(42,20,16,.14);
+  --font-display:'Cormorant Garamond', 'Cormorant', Georgia, serif;
+  --font-body:'Inter','Helvetica Neue',Arial,sans-serif;
+  --section-y:clamp(80px,12vw,160px);
+  --container:1240px;
+  --radius:14px;
+  --ease:cubic-bezier(.2,.65,.2,1);
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:var(--font-body);
+  font-weight:400;
+  color:var(--color-text);
+  background:var(--color-bg);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+img,video{display:block;max-width:100%;height:auto}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
+
+h1,h2,h3,h4,.serif{font-family:var(--font-display);font-weight:500;letter-spacing:-.01em;line-height:1.15;margin:0;padding-top:.08em}
+h1{font-size:clamp(48px,6.6vw,96px);font-weight:500;letter-spacing:-.02em;line-height:1.1}
+h2{font-size:clamp(36px,4.6vw,60px);font-weight:500;line-height:1.15}
+h3{font-size:clamp(24px,2.4vw,30px);font-weight:600}
+p{margin:0}
+.eyebrow{
+  font-family:var(--font-body);
+  font-size:12px;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  font-weight:500;
+  color:var(--color-primary);
+}
+.container{
+  max-width:var(--container);
+  margin:0 auto;
+  padding:0 clamp(20px,4vw,40px);
+}
+
+/* ——— Reveal ——— */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+.reveal.delay-1{transition-delay:.08s}
+.reveal.delay-2{transition-delay:.16s}
+.reveal.delay-3{transition-delay:.24s}
+
+/* ——— Navbar ——— */
+.nav{
+  position:fixed;
+  inset:0 0 auto 0;
+  z-index:50;
+  padding:18px 0;
+  transition:background .35s var(--ease),backdrop-filter .35s var(--ease),padding .35s var(--ease),border-color .35s var(--ease);
+  border-bottom:1px solid transparent;
+}
+.nav.scrolled{
+  background:rgba(242,232,213,.75);
+  backdrop-filter:saturate(140%) blur(14px);
+  -webkit-backdrop-filter:saturate(140%) blur(14px);
+  border-bottom-color:var(--color-line);
+  padding:12px 0;
+}
+.nav-row{display:flex;align-items:center;justify-content:space-between;gap:24px}
+.brand{display:flex;align-items:center;gap:12px;color:var(--color-bg)}
+.nav.scrolled .brand,.nav.over-light .brand{color:var(--color-text)}
+.brand-logo{
+  height:54px;width:auto;display:block;
+  border-radius:6px;
+  box-shadow:0 6px 22px -10px rgba(0,0,0,.45);
+  transition:height .35s var(--ease),box-shadow .35s var(--ease);
+}
+.nav.scrolled .brand-logo{
+  height:44px;
+  box-shadow:0 2px 10px -6px rgba(42,20,16,.25);
+}
+.nav-links{display:flex;align-items:center;gap:36px}
+.nav-links a{
+  font-size:14px;font-weight:500;letter-spacing:.04em;
+  color:var(--color-bg);
+  opacity:.92;
+  transition:opacity .25s var(--ease),color .25s var(--ease);
+  position:relative;
+}
+.nav.scrolled .nav-links a{color:var(--color-text)}
+.nav-links a:hover{opacity:1}
+.nav-links a::after{
+  content:"";position:absolute;left:0;right:0;bottom:-6px;height:1px;
+  background:currentColor;transform:scaleX(0);transform-origin:left;
+  transition:transform .35s var(--ease);
+}
+.nav-links a:hover::after{transform:scaleX(1)}
+.btn{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:13px 22px;border-radius:999px;
+  background:var(--color-primary);color:var(--color-bg);
+  font-size:13px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;
+  transition:background .25s var(--ease),transform .25s var(--ease),box-shadow .25s var(--ease);
+  border:1px solid transparent;
+}
+.btn:hover{background:#4a1314;transform:translateY(-1px);box-shadow:0 12px 24px -16px rgba(92,26,27,.6)}
+.btn .arrow{transition:transform .3s var(--ease)}
+.btn:hover .arrow{transform:translateX(3px)}
+.btn-ghost{background:transparent;color:var(--color-bg);border:1px solid rgba(242,232,213,.5)}
+.btn-ghost:hover{background:rgba(242,232,213,.1);color:var(--color-bg)}
+.nav-toggle{
+  display:none;
+  padding:6px;
+  color:var(--color-bg);
+  transition:color .25s var(--ease);
+}
+.nav.scrolled .nav-toggle,.nav.over-light .nav-toggle{color:var(--color-text)}
+
+/* ——— Mobile nav drawer ——— */
+.mobile-nav{
+  position:fixed;inset:0 0 0 auto;
+  width:min(320px,88vw);
+  background:var(--color-bg);
+  z-index:100;
+  padding:28px 28px 40px;
+  display:flex;flex-direction:column;gap:32px;
+  transform:translateX(100%);
+  transition:transform .4s var(--ease);
+  box-shadow:-24px 0 48px -16px rgba(42,20,16,.18);
+}
+.mobile-nav.open{transform:translateX(0)}
+.mobile-nav-close{
+  align-self:flex-end;padding:6px;
+  color:var(--color-text);
+}
+.mobile-nav nav{display:flex;flex-direction:column;gap:4px;margin-top:8px}
+.mobile-nav nav a{
+  font-family:var(--font-display);font-size:28px;font-weight:500;
+  color:var(--color-text);padding:10px 0;
+  border-bottom:1px solid var(--color-line);
+  transition:color .25s var(--ease),padding-left .25s var(--ease);
+}
+.mobile-nav nav a:hover{color:var(--color-primary);padding-left:6px}
+.mobile-nav-cta{width:100%;justify-content:center;margin-top:auto}
+.mobile-nav-overlay{
+  position:fixed;inset:0;z-index:99;
+  background:rgba(42,20,16,.45);
+  opacity:0;pointer-events:none;
+  transition:opacity .4s var(--ease);
+  backdrop-filter:blur(2px);
+}
+.mobile-nav-overlay.open{opacity:1;pointer-events:all}
+
+/* ——— Hero ——— */
+.hero{
+  position:relative;
+  min-height:100svh;
+  overflow:hidden;
+  color:var(--color-bg);
+  isolation:isolate;
+  padding-top:96px;
+}
+.hero video,.hero .hero-poster{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  z-index:0;
+}
+.hero::before,.hero::after{
+  content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+}
+.hero::before{
+  background:linear-gradient(180deg,rgba(20,8,6,.45) 0%,rgba(20,8,6,.1) 30%,rgba(20,8,6,.15) 55%,rgba(20,8,6,.78) 100%);
+}
+.hero::after{
+  background:radial-gradient(ellipse at 50% 60%, rgba(20,8,6,0) 30%, rgba(20,8,6,.35) 100%);
+}
+.hero-inner{
+  position:relative;z-index:2;
+  min-height:calc(100svh - 96px);
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding-bottom:clamp(80px,12vh,140px);
+  padding-top:40px;
+}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:14px;
+  font-size:12px;letter-spacing:.32em;text-transform:uppercase;font-weight:500;
+  color:rgba(242,232,213,.85);
+  margin-bottom:24px;
+}
+.hero-eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--color-bg)}
+.hero-eyebrow .line{width:40px;height:1px;background:rgba(242,232,213,.6)}
+.hero h1{max-width:14ch;text-wrap:balance;padding-top:.12em}
+.hero h1 em{font-style:italic;font-weight:400;color:#E8D9BC}
+.hero-sub{
+  margin-top:28px;max-width:600px;
+  font-size:clamp(15px,1.3vw,18px);line-height:1.7;
+  color:rgba(242,232,213,.88);
+  font-weight:300;
+}
+.hero-actions{margin-top:36px;display:flex;flex-wrap:wrap;gap:14px}
+.scroll-cue{
+  position:absolute;left:50%;bottom:28px;transform:translateX(-50%);
+  z-index:2;
+  display:flex;flex-direction:column;align-items:center;gap:10px;
+  font-size:10px;letter-spacing:.3em;text-transform:uppercase;
+  color:rgba(242,232,213,.7);
+}
+.scroll-cue .stem{width:1px;height:36px;background:rgba(242,232,213,.55);position:relative;overflow:hidden}
+.scroll-cue .stem::after{
+  content:"";position:absolute;top:-12px;left:0;width:1px;height:12px;
+  background:var(--color-bg);
+  animation:cueSlide 2.4s var(--ease) infinite;
+}
+@keyframes cueSlide{
+  0%{transform:translateY(0);opacity:0}
+  20%{opacity:1}
+  100%{transform:translateY(48px);opacity:0}
+}
+
+/* ——— Section base ——— */
+section{padding:var(--section-y) 0}
+.section-head{display:flex;flex-direction:column;align-items:center;text-align:center;gap:16px;margin-bottom:clamp(56px,7vw,96px)}
+.section-head .eyebrow{display:inline-flex;align-items:center;gap:12px}
+.section-head .eyebrow::before,.section-head .eyebrow::after{content:"";width:24px;height:1px;background:currentColor;opacity:.5}
+.section-head h2{max-width:18ch;text-wrap:balance;padding-top:.1em;padding-bottom:.05em}
+.section-head p{max-width:58ch;color:var(--color-text-soft);font-size:17px}
+
+/* ——— Problema ——— */
+.problema{background:var(--color-bg);position:relative}
+.quote-block{
+  max-width:1000px;margin:0 auto;text-align:center;
+  font-family:var(--font-display);font-style:italic;font-weight:400;
+  font-size:clamp(28px,4vw,52px);line-height:1.25;
+  color:var(--color-text);
+  text-wrap:balance;
+}
+.quote-block .line{display:block}
+.quote-block .accent{color:var(--color-primary);font-style:italic}
+.quote-mark{
+  font-family:var(--font-display);font-size:140px;line-height:0;
+  color:var(--color-primary);opacity:.18;
+  display:block;height:.2em;margin-bottom:.3em;
+}
+.quote-signature{
+  margin-top:48px;
+  font-size:12px;letter-spacing:.3em;text-transform:uppercase;
+  color:var(--color-text-soft);
+  text-align:center;
+}
+.quote-signature::before{content:"— "}
+
+/* ——— Solucion ——— */
+.solucion{background:var(--color-bg-warm)}
+.pillars{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:clamp(28px,4vw,64px);
+  align-items:start;
+}
+.pillar{display:flex;flex-direction:column;gap:18px}
+.pillar-icon{
+  position:relative;
+  width:72px;height:72px;
+  display:grid;place-items:center;
+  color:var(--color-primary);
+  border:1px solid var(--color-line);
+  border-radius:50%;
+  background:rgba(242,232,213,.5);
+  overflow:hidden;
+  transition:transform .5s var(--ease),border-color .5s var(--ease),background .5s var(--ease);
+}
+.pillar:hover .pillar-icon{transform:translateY(-2px);border-color:rgba(92,26,27,.35);background:rgba(242,232,213,.85)}
+.pillar-icon svg{width:34px;height:34px;stroke:currentColor;stroke-width:1.4;fill:none;stroke-linecap:round;stroke-linejoin:round;overflow:visible}
+
+/* Wine glass — liquid fills */
+.icon-wine .glass-bowl{}
+.icon-wine .wine-fill{
+  fill:var(--color-primary);
+  stroke:none;
+  transform-origin:center;
+  animation:wineFill 5.4s var(--ease) infinite;
+}
+.icon-wine .wine-shimmer{
+  fill:rgba(242,232,213,.5);
+  stroke:none;
+  animation:wineShimmer 5.4s var(--ease) infinite;
+}
+@keyframes wineFill{
+  0%,8%   { transform:translateY(8px);   opacity:.0 }
+  35%     { transform:translateY(2.6px); opacity:1 }
+  70%     { transform:translateY(2.6px); opacity:1 }
+  92%,100%{ transform:translateY(8px);   opacity:.0 }
+}
+@keyframes wineShimmer{
+  0%,30%,80%,100%{ opacity:0; transform:translateX(0) }
+  45%{ opacity:.55; transform:translateX(-2px) }
+  60%{ opacity:.4;  transform:translateX(2px) }
+}
+
+/* Plate — concentric ripples */
+.icon-plate .ring{
+  transform-origin:center;
+  transform-box:fill-box;
+}
+.icon-plate .ring-outer{ animation:plateRing 3.2s var(--ease) infinite }
+.icon-plate .ring-mid  { animation:plateRing 3.2s var(--ease) infinite .5s }
+.icon-plate .ring-inner{ animation:plateRing 3.2s var(--ease) infinite 1s }
+.icon-plate .ring-dot  { animation:plateDot 3.2s var(--ease) infinite }
+@keyframes plateRing{
+  0%  { transform:scale(.7); opacity:0 }
+  30% { opacity:.9 }
+  100%{ transform:scale(1.15); opacity:0 }
+}
+@keyframes plateDot{
+  0%,100%{ transform:scale(1); opacity:1 }
+  50%   { transform:scale(.55); opacity:.5 }
+}
+
+/* House — chimney smoke */
+.icon-house .smoke{
+  fill:var(--color-primary);
+  stroke:none;
+  opacity:0;
+  transform-origin:center bottom;
+  transform-box:fill-box;
+}
+.icon-house .smoke-1{ animation:smokeRise 3.6s var(--ease) infinite }
+.icon-house .smoke-2{ animation:smokeRise 3.6s var(--ease) infinite 1.2s }
+.icon-house .smoke-3{ animation:smokeRise 3.6s var(--ease) infinite 2.4s }
+@keyframes smokeRise{
+  0%  { transform:translate(0,0) scale(.6); opacity:0 }
+  20% { opacity:.55 }
+  60% { opacity:.35 }
+  100%{ transform:translate(-2px,-9px) scale(1.4); opacity:0 }
+}
+.icon-house .window-glow{
+  fill:var(--color-primary);
+  stroke:none;
+  opacity:.0;
+  animation:windowGlow 4.2s ease-in-out infinite;
+}
+@keyframes windowGlow{
+  0%,100%{ opacity:.15 }
+  50%   { opacity:.65 }
+}
+.pillar h3{font-family:var(--font-display);font-size:clamp(24px,2.4vw,30px);font-weight:600;line-height:1.2;padding-top:.05em}
+.pillar p{color:var(--color-text-soft);font-size:15.5px;line-height:1.7}
+.pillar-num{font-size:11px;letter-spacing:.3em;color:var(--color-accent);font-weight:500}
+
+/* ——— Features (La casa) ——— */
+.features{background:var(--color-bg)}
+.features-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:clamp(40px,6vw,96px);
+  align-items:center;
+}
+.features-visual{
+  position:relative;
+  aspect-ratio:4/5;
+  border-radius:var(--radius);
+  overflow:hidden;
+  background:var(--color-bg-warm);
+  box-shadow:0 30px 60px -40px rgba(42,20,16,.4),
+             0 2px 8px -4px rgba(42,20,16,.15);
+}
+.carousel{position:absolute;inset:0}
+.carousel-slide{
+  position:absolute;inset:0;
+  opacity:0;
+  transform:scale(1.06);
+  transition:opacity 1s var(--ease), transform 7s linear;
+  pointer-events:none;
+}
+.carousel-slide.active{
+  opacity:1;
+  transform:scale(1);
+  transition:opacity 1s var(--ease), transform 9s linear;
+}
+.carousel-slide img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  filter:saturate(.95) contrast(1.02);
+}
+.carousel-slide::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg, rgba(20,8,6,0) 40%, rgba(20,8,6,.55) 100%);
+  pointer-events:none;
+}
+
+/* Caption */
+.carousel-caption{
+  position:absolute;left:24px;right:96px;bottom:24px;
+  z-index:3;
+  display:flex;flex-direction:column;gap:4px;
+  color:var(--color-bg);
+  pointer-events:none;
+}
+.carousel-caption .label{
+  font-family:'Courier New',monospace;
+  font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;
+  color:rgba(242,232,213,.75);
+}
+.carousel-caption .title{
+  font-family:var(--font-display);font-size:22px;font-weight:500;font-style:italic;
+  text-shadow:0 2px 12px rgba(0,0,0,.4);
+}
+
+/* Caption animation — retrigger via class swap */
+.carousel-caption .label,
+.carousel-caption .title{
+  animation:capIn .55s var(--ease) both;
+}
+.carousel-caption .title{animation-delay:.12s}
+@keyframes capIn{
+  from{opacity:0;transform:translateY(10px)}
+  to{opacity:1;transform:none}
+}
+
+/* Counter top-left */
+.carousel-counter{
+  position:absolute;top:20px;left:24px;z-index:3;
+  font-family:'Courier New',monospace;
+  font-size:11px;letter-spacing:.18em;color:var(--color-bg);
+  background:rgba(20,8,6,.4);
+  backdrop-filter:blur(6px);
+  padding:6px 12px;border-radius:999px;
+  display:flex;align-items:center;gap:8px;
+}
+.carousel-counter .cur{font-weight:600;letter-spacing:.05em;color:var(--color-bg)}
+.carousel-counter .total{opacity:.6}
+
+/* Controls */
+.carousel-controls{
+  position:absolute;right:18px;bottom:18px;z-index:4;
+  display:flex;gap:8px;
+}
+.car-btn{
+  width:46px;height:46px;border-radius:50%;
+  background:rgba(242,232,213,.92);
+  color:var(--color-primary);
+  display:grid;place-items:center;
+  cursor:pointer;
+  transition:background .3s var(--ease),transform .3s var(--ease),box-shadow .3s var(--ease);
+  box-shadow:0 8px 22px -10px rgba(0,0,0,.4);
+  position:relative;overflow:hidden;
+}
+.car-btn:hover{background:var(--color-bg);transform:translateY(-2px);box-shadow:0 14px 28px -12px rgba(0,0,0,.5)}
+.car-btn:active{transform:translateY(0) scale(.95)}
+.car-btn svg{width:18px;height:18px;stroke:currentColor;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.car-btn .arrow-track{
+  position:relative;width:24px;height:18px;overflow:hidden;
+  display:flex;align-items:center;justify-content:center;
+}
+.car-btn .arrow-track svg{position:absolute;transition:transform .45s var(--ease),opacity .35s var(--ease)}
+.car-btn .arrow-track svg.ghost{transform:translateX(-28px);opacity:0}
+.car-btn.next:hover .arrow-track svg.real{transform:translateX(28px);opacity:0}
+.car-btn.next:hover .arrow-track svg.ghost{transform:translateX(0);opacity:1}
+.car-btn.prev:hover .arrow-track svg.real{transform:translateX(-28px);opacity:0}
+.car-btn.prev:hover .arrow-track svg.ghost{transform:translateX(0);opacity:1}
+.car-btn.prev .arrow-track svg.ghost{transform:translateX(28px)}
+
+/* Dots */
+.carousel-dots{
+  position:absolute;left:24px;bottom:24px;z-index:4;
+  display:flex;gap:6px;
+  /* hidden by default — caption takes this spot; dots show when no caption */
+  display:none;
+}
+.carousel-dots button{
+  width:24px;height:3px;border-radius:2px;
+  background:rgba(242,232,213,.4);
+  transition:background .3s var(--ease),width .3s var(--ease);
+  cursor:pointer;
+}
+.carousel-dots button.active{background:var(--color-bg);width:36px}
+
+/* Progress bar at top */
+.carousel-progress{
+  position:absolute;top:0;left:0;right:0;height:2px;z-index:3;
+  background:rgba(20,8,6,.18);
+}
+.carousel-progress .bar{
+  position:absolute;inset:0;width:0;
+  background:var(--color-bg);
+  transition:width .15s linear;
+}
+.feat-list{display:flex;flex-direction:column}
+.feat-item{
+  display:grid;grid-template-columns:auto 1fr auto;gap:20px;align-items:start;
+  padding:26px 0;
+  border-top:1px solid var(--color-line);
+  transition:padding-left .35s var(--ease);
+  cursor:pointer;
+}
+.feat-item:last-child{border-bottom:1px solid var(--color-line)}
+.feat-item:hover{padding-left:8px}
+.feat-num{
+  font-family:var(--font-display);font-style:italic;
+  color:var(--color-primary);font-size:22px;font-weight:500;
+  min-width:32px;
+}
+.feat-body h3{font-size:22px;font-weight:600;margin-bottom:4px;font-family:var(--font-display)}
+.feat-body p{color:var(--color-text-soft);font-size:15px}
+.feat-arrow{align-self:center;color:var(--color-primary);transition:transform .35s var(--ease)}
+.feat-item:hover .feat-arrow{transform:translateX(4px)}
+.features-intro{margin-bottom:36px}
+.features-intro .eyebrow{margin-bottom:14px;display:inline-block}
+.features-intro h2{margin-bottom:18px;max-width:14ch}
+.features-intro p{color:var(--color-text-soft);max-width:46ch;font-size:16px}
+
+/* ——— Trust strip ——— */
+.trust{background:var(--color-bg-warm);padding:34px 0;border-top:1px solid var(--color-line);border-bottom:1px solid var(--color-line)}
+.trust-row{
+  display:flex;align-items:center;justify-content:center;flex-wrap:wrap;
+  gap:18px clamp(24px,4vw,56px);
+  font-size:12.5px;letter-spacing:.18em;text-transform:uppercase;font-weight:500;
+  color:var(--color-text);
+}
+.trust-row span{display:inline-flex;align-items:center;gap:14px;white-space:nowrap}
+.trust-row span + span::before{
+  content:"";display:inline-block;width:5px;height:5px;border-radius:50%;
+  background:var(--color-primary);margin-right:14px;margin-left:-14px;opacity:.6;
+}
+
+/* ——— Testimonials ——— */
+.testimonials{background:var(--color-bg);overflow:hidden}
+.tmarquee{
+  position:relative;
+  width:100%;
+  margin-top:8px;
+  -webkit-mask-image:linear-gradient(90deg,transparent 0, #000 8%, #000 92%, transparent 100%);
+          mask-image:linear-gradient(90deg,transparent 0, #000 8%, #000 92%, transparent 100%);
+}
+.tmarquee-track{
+  display:flex;gap:clamp(20px,2.4vw,32px);
+  width:max-content;
+  animation:marquee 56s linear infinite;
+  will-change:transform;
+}
+.tmarquee:hover .tmarquee-track{animation-play-state:paused}
+@keyframes marquee{
+  from{ transform:translateX(0) }
+  to  { transform:translateX(-50%) }
+}
+.tcard{
+  flex:0 0 clamp(320px, 32vw, 420px);
+  background:var(--color-bg-warm);
+  border:1px solid var(--color-line);
+  border-radius:var(--radius);
+  padding:36px 32px 30px;
+  display:flex;flex-direction:column;gap:22px;
+  box-shadow:0 18px 40px -32px rgba(42,20,16,.35);
+  position:relative;
+  transition:transform .4s var(--ease),box-shadow .4s var(--ease);
+}
+.tcard:hover{transform:translateY(-4px);box-shadow:0 26px 50px -32px rgba(42,20,16,.4)}
+.tcard .tmark{font-family:var(--font-display);font-size:54px;line-height:.5;color:var(--color-primary);height:.5em}
+.tcard .tquote{
+  font-family:var(--font-display);font-size:22px;line-height:1.4;font-weight:500;
+  color:var(--color-text);font-style:italic;
+}
+.tcard .tquote .h{background:linear-gradient(transparent 65%, rgba(92,26,27,.16) 65%)}
+.tperson{display:flex;align-items:center;gap:14px;margin-top:auto;padding-top:16px;border-top:1px solid var(--color-line)}
+.tavatar{
+  width:42px;height:42px;border-radius:50%;
+  background:var(--color-primary);color:var(--color-bg);
+  display:grid;place-items:center;
+  font-family:var(--font-display);font-weight:600;font-size:17px;
+}
+.tperson .name{font-weight:500;font-size:15px;line-height:1.2}
+.tperson .meta{font-size:12px;color:var(--color-text-soft);letter-spacing:.04em}
+.stars{display:flex;gap:3px;color:var(--color-primary)}
+.stars svg{width:14px;height:14px;fill:currentColor}
+
+/* ——— Pricing ——— */
+.pricing{background:var(--color-bg-warm)}
+.plans{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,2vw,28px);
+  align-items:stretch;
+  max-width:1080px;margin:0 auto;
+}
+.plan{
+  background:var(--color-bg);
+  border:1px solid var(--color-line);
+  border-radius:var(--radius);
+  padding:44px 32px 36px;
+  display:flex;flex-direction:column;gap:20px;
+  position:relative;
+  transition:transform .4s var(--ease),box-shadow .4s var(--ease);
+}
+.plan:hover{transform:translateY(-4px)}
+.plan-label{font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--color-primary);font-weight:500}
+.plan h3{font-family:var(--font-display);font-size:30px;font-weight:600}
+.plan .price{display:flex;align-items:baseline;gap:4px;font-family:var(--font-display);flex-wrap:wrap;line-height:1.1;padding:.1em 0}
+.plan .price .amt{font-size:clamp(56px,5vw,68px);font-weight:500;line-height:1.05;letter-spacing:-.02em}
+.plan .price .cur{font-size:clamp(28px,2.4vw,34px);color:var(--color-text-soft);font-weight:500;margin-left:2px}
+.plan .price .per{font-size:13px;color:var(--color-text-soft);letter-spacing:.06em;font-family:var(--font-body);margin-left:10px;font-weight:400;align-self:baseline}
+.plan ul{list-style:none;padding:0;margin:8px 0 0;display:flex;flex-direction:column;gap:12px}
+.plan li{font-size:14.5px;color:var(--color-text-soft);display:flex;gap:12px;align-items:flex-start;line-height:1.5}
+.plan li svg{flex:0 0 16px;margin-top:4px;color:var(--color-primary)}
+.plan .plan-cta{margin-top:auto;display:flex;justify-content:center}
+.plan .plan-cta .btn{width:100%;justify-content:center}
+.plan.featured{
+  background:var(--color-primary);color:var(--color-bg);
+  border-color:var(--color-primary);
+  transform:translateY(-12px);
+  box-shadow:0 40px 60px -40px rgba(92,26,27,.7);
+}
+.plan.featured:hover{transform:translateY(-16px)}
+.plan.featured .plan-label,.plan.featured .price .per{color:rgba(242,232,213,.75)}
+.plan.featured .price .cur{color:rgba(242,232,213,.85)}
+.plan.featured li{color:rgba(242,232,213,.88)}
+.plan.featured li svg{color:var(--color-bg)}
+.plan.featured .btn{background:var(--color-bg);color:var(--color-primary)}
+.plan.featured .btn:hover{background:#fff;color:var(--color-primary)}
+.plan-badge{
+  position:absolute;top:-13px;left:50%;transform:translateX(-50%);
+  background:var(--color-accent);color:var(--color-bg);
+  font-size:10px;letter-spacing:.24em;text-transform:uppercase;font-weight:500;
+  padding:7px 14px;border-radius:999px;
+}
+.pricing-cta{
+  text-align:center;margin-top:64px;display:flex;flex-direction:column;align-items:center;gap:12px;
+}
+.pricing-cta .lead{font-family:var(--font-display);font-size:clamp(22px,2.2vw,28px);font-weight:500;margin-bottom:6px}
+.pricing-cta .note{font-size:14px;color:var(--color-text-soft)}
+
+/* ——— Footer ——— */
+.footer{background:var(--color-primary);color:var(--color-bg);padding:88px 0 32px}
+.footer .container{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:48px}
+.footer h4{font-family:var(--font-display);font-size:20px;font-weight:600;margin-bottom:18px;color:var(--color-bg)}
+.footer p,.footer a,.footer li{font-size:14px;color:rgba(242,232,213,.78);line-height:1.7}
+.footer a:hover{color:var(--color-bg)}
+.footer ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px}
+.footer-brand{display:flex;flex-direction:column;gap:18px;max-width:340px}
+.footer-logo{
+  width:240px;max-width:100%;height:auto;display:block;
+  background:var(--color-bg);
+  border-radius:8px;
+  padding:6px 10px;
+  box-shadow:0 8px 24px -12px rgba(0,0,0,.4);
+}
+.socials{display:flex;gap:10px;margin-top:8px}
+.socials a{
+  width:36px;height:36px;border-radius:50%;border:1px solid rgba(242,232,213,.3);
+  display:grid;place-items:center;transition:background .25s var(--ease),border-color .25s var(--ease);
+}
+.socials a:hover{background:rgba(242,232,213,.12);border-color:rgba(242,232,213,.6)}
+.socials svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:1.6}
+.footer-bottom{
+  margin-top:64px;padding-top:24px;
+  border-top:1px solid rgba(242,232,213,.18);
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;
+  font-size:12.5px;color:rgba(242,232,213,.65);
+  letter-spacing:.04em;
+}
+.footer-bottom .legal{display:flex;gap:20px}
+.footer-tag{font-family:var(--font-display);font-style:italic;font-size:18px;color:rgba(242,232,213,.85)}
+
+/* ——— Responsive ——— */
+@media (max-width:1024px){
+  .footer .container{grid-template-columns:1fr 1fr;gap:40px}
+  .footer-brand{grid-column:1/-1;max-width:none}
+  .plan.featured{transform:none}
+  .plan.featured:hover{transform:translateY(-4px)}
+}
+@media (max-width:768px){
+  .nav-links{display:none}
+  .nav .btn{display:none}
+  .nav-toggle{display:flex}
+  .pillars{grid-template-columns:1fr;gap:40px}
+  .features-grid{grid-template-columns:1fr}
+  .features-visual{aspect-ratio:3/4;order:-1}
+  .tcards{grid-template-columns:1fr}
+  .tcard{flex:0 0 78vw}
+  .plans{grid-template-columns:1fr;gap:20px}
+  .footer .container{grid-template-columns:1fr}
+  .hero h1{font-size:clamp(52px,12vw,80px)}
+  .quote-block{font-size:clamp(24px,5vw,36px)}
+  .brand-logo{height:42px}
+  .nav.scrolled .brand-logo{height:36px}
+}
+@media (max-width:480px){
+  .scroll-cue{display:none}
+  .hero-inner{padding-bottom:80px}
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion:reduce){
+  .reveal{opacity:1;transform:none;transition:none}
+  .scroll-cue .stem::after{animation:none}
+  *,*::before,*::after{transition-duration:.001ms!important;animation-duration:.001ms!important}
+}
+</style>
+</head>
+<body>
+
+<!-- ================ NAVBAR ================ -->
+<header class="nav" id="nav" data-screen-label="Navbar">
+  <div class="container nav-row">
+    <a href="#top" class="brand" aria-label="Bodegas Monasterio, inicio">
+      <img src="assets/brand.png" alt="Bodegas Monasterio — Degustación y vinoteca, desde 1949" class="brand-logo">
+    </a>
+    <nav class="nav-links" aria-label="Navegación principal">
+      <a href="carta.html">Carta</a>
+      <a href="#casa">La Casa</a>
+      <a href="#catas">Catas</a>
+      <a href="reservar.html">Reservar</a>
+    </nav>
+    <a href="reservar.html" class="btn" aria-label="Reservar mesa">
+      Reservar mesa
+      <svg class="arrow" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M1 7h12M8 2l5 5-5 5"/></svg>
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">
+      <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="2" y1="6" x2="20" y2="6"/><line x1="2" y1="11" x2="20" y2="11"/><line x1="2" y1="16" x2="20" y2="16"/></svg>
+    </button>
+  </div>
+</header>
+
+<!-- Mobile nav drawer -->
+<div class="mobile-nav" id="mobileNav" aria-hidden="true">
+  <button class="mobile-nav-close" id="mobileNavClose" aria-label="Cerrar menú">
+    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="4" y1="4" x2="18" y2="18"/><line x1="18" y1="4" x2="4" y2="18"/></svg>
+  </button>
+  <nav aria-label="Menú móvil">
+    <a href="carta.html">Carta</a>
+    <a href="#casa" class="mobile-nav-link-close">La Casa</a>
+    <a href="#catas" class="mobile-nav-link-close">Catas</a>
+    <a href="reservar.html">Reservar</a>
+  </nav>
+  <a href="reservar.html" class="btn mobile-nav-cta">Reservar mesa →</a>
+</div>
+<div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
+
+<!-- ================ HERO ================ -->
+<section class="hero" id="top" data-screen-label="Hero">
+  <video
+    id="heroVideo"
+    autoplay muted playsinline preload="metadata"
+    aria-hidden="true"
+    poster="assets/brand.png">
+    <source src="assets/hero.mp4" type="video/mp4">
+  </video>
+  <div class="container hero-inner">
+    <span class="hero-eyebrow reveal">
+      <span class="dot"></span>
+      Valle del Monasterio · Familia desde 1949
+      <span class="line"></span>
+    </span>
+    <h1 class="reveal delay-1">Vino que nace aquí.<br><em>Mesa puesta también.</em></h1>
+    <p class="hero-sub reveal delay-2">Bodegas Monasterio. Restaurante y bodega familiar donde lo que bebes lo elaboramos a unos metros, y lo que comes sale de la huerta del valle.</p>
+    <div class="hero-actions reveal delay-3">
+      <a href="#reservar" class="btn" aria-label="Reservar mesa">
+        Reservar mesa
+        <svg class="arrow" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M1 7h12M8 2l5 5-5 5"/></svg>
+      </a>
+      <a href="#casa" class="btn btn-ghost" aria-label="Conocer la casa">Conocer la casa</a>
+    </div>
+  </div>
+  <div class="scroll-cue" aria-hidden="true">
+    <span>Bajar</span>
+    <span class="stem"></span>
+  </div>
+</section>
+
+<!-- ================ PROBLEMA ================ -->
+<section class="problema" data-screen-label="Problema">
+  <div class="container">
+    <span class="quote-mark" aria-hidden="true">“</span>
+    <blockquote class="quote-block reveal">
+      <span class="line">Hay sitios donde el vino es solo lo que acompaña al plato.</span>
+      <span class="line">Y hay sitios donde el plato es lo que acompaña al vino.</span>
+      <span class="line accent">Nosotros no entendemos esa frontera.</span>
+    </blockquote>
+    <p class="quote-signature reveal delay-2">La familia Monasterio</p>
+  </div>
+</section>
+
+<!-- ================ SOLUCION ================ -->
+<section class="solucion" id="carta" data-screen-label="Solucion">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Lo que hacemos</span>
+      <h2>Tres oficios bajo el mismo techo</h2>
+      <p>No somos restaurante con carta de vinos. Ni bodega con cocina abierta. Somos la suma de las dos cosas, hechas por la misma familia, en el mismo sitio.</p>
+    </div>
+    <div class="pillars">
+      <article class="pillar reveal">
+        <div class="pillar-icon">
+          <svg class="icon-wine" viewBox="0 0 32 32" aria-hidden="true">
+            <!-- glass outline -->
+            <path class="glass-bowl" d="M9 4h14v6a7 7 0 0 1-14 0V4z"/>
+            <path d="M16 17v9"/>
+            <path d="M11 27h10"/>
+            <!-- wine liquid (clipped to bowl shape) -->
+            <clipPath id="wineClip"><path d="M9 4h14v6a7 7 0 0 1-14 0V4z"/></clipPath>
+            <g clip-path="url(#wineClip)">
+              <rect class="wine-fill" x="8" y="5" width="16" height="7"/>
+              <rect class="wine-shimmer" x="8" y="5.2" width="16" height=".8"/>
+            </g>
+          </svg>
+        </div>
+        <span class="pillar-num">01</span>
+        <h3>Bodega propia,<br>vino de casa</h3>
+        <p>Pisamos uva en septiembre, embotellamos en primavera y servimos en mesa. Sin intermediarios, sin etiquetas que no podamos explicar a mano.</p>
+      </article>
+      <article class="pillar reveal delay-1">
+        <div class="pillar-icon">
+          <svg class="icon-plate" viewBox="0 0 32 32" aria-hidden="true">
+            <circle class="ring ring-outer" cx="16" cy="16" r="12"/>
+            <circle class="ring ring-mid"   cx="16" cy="16" r="8"/>
+            <circle class="ring ring-inner" cx="16" cy="16" r="4.5"/>
+            <circle class="ring ring-dot"   cx="16" cy="16" r="1.5" fill="currentColor" stroke="none"/>
+          </svg>
+        </div>
+        <span class="pillar-num">02</span>
+        <h3>Cocina de producto,<br>sin disfraces</h3>
+        <p>Lo que está en temporada, en el plato. La huerta del valle marca la carta antes que nosotros. Recetas honestas, fuego, tiempo y poco más.</p>
+      </article>
+      <article class="pillar reveal delay-2">
+        <div class="pillar-icon">
+          <svg class="icon-house" viewBox="0 0 32 32" aria-hidden="true">
+            <!-- smoke puffs (rendered behind house roofline) -->
+            <circle class="smoke smoke-1" cx="23" cy="7"  r="1.6"/>
+            <circle class="smoke smoke-2" cx="23" cy="7"  r="1.2"/>
+            <circle class="smoke smoke-3" cx="23" cy="7"  r="1.8"/>
+            <!-- house body -->
+            <path d="M5 28V14L16 5l11 9v14"/>
+            <path d="M12 28v-8h8v8"/>
+            <!-- chimney -->
+            <path d="M21 10V7h3v5"/>
+            <!-- glowing window -->
+            <rect class="window-glow" x="13.2" y="21.2" width="5.6" height="6.6"/>
+          </svg>
+        </div>
+        <span class="pillar-num">03</span>
+        <h3>Un sitio<br>para quedarse</h3>
+        <p>Comedor de piedra, chimenea encendida de octubre a abril, sobremesas largas. Aquí nadie te apura el café ni te pasa la cuenta antes de tiempo.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================ FEATURES (La casa) ================ -->
+<section class="features" id="casa" data-screen-label="Features">
+  <div class="container">
+    <div class="features-grid">
+      <div class="features-visual reveal" aria-label="Imágenes del local">
+        <div class="carousel" id="localCarousel" role="region" aria-roledescription="carrusel" aria-label="Galería del local">
+          <div class="carousel-progress" aria-hidden="true"><span class="bar" id="carBar"></span></div>
+
+          <div class="carousel-slide active" data-caption-label="· La Bodega" data-caption-title="Barricas de roble, fermentando despacio">
+            <img src="assets/gallery/01.svg" alt="Bodega con barricas de roble apiladas" loading="lazy">
+          </div>
+          <div class="carousel-slide" data-caption-label="· La Viña" data-caption-title="Vendimia de septiembre en el valle">
+            <img src="assets/gallery/02.svg" alt="Viñedos al atardecer" loading="lazy">
+          </div>
+          <div class="carousel-slide" data-caption-label="· La Mesa" data-caption-title="Comedor de piedra, mesa puesta">
+            <img src="assets/gallery/03.svg" alt="Comedor rústico con mesa preparada" loading="lazy">
+          </div>
+          <div class="carousel-slide" data-caption-label="· La Copa" data-caption-title="Cinco vinos, una hora y media">
+            <img src="assets/gallery/04.svg" alt="Cata de vinos en copas" loading="lazy">
+          </div>
+          <div class="carousel-slide" data-caption-label="· La Cocina" data-caption-title="Producto del valle, fuego, tiempo">
+            <img src="assets/gallery/05.svg" alt="Plato de cocina de producto" loading="lazy">
+          </div>
+
+          <div class="carousel-counter" aria-live="polite">
+            <span class="cur" id="carCur">01</span>
+            <span>/</span>
+            <span class="total" id="carTotal">05</span>
+          </div>
+
+          <div class="carousel-caption">
+            <span class="label" id="carLabel">· La Bodega</span>
+            <span class="title" id="carTitle">Barricas de roble, fermentando despacio</span>
+          </div>
+
+          <div class="carousel-controls">
+            <button class="car-btn prev" id="carPrev" aria-label="Imagen anterior" type="button">
+              <span class="arrow-track" aria-hidden="true">
+                <svg class="real" viewBox="0 0 24 18"><path d="M22 9H2M9 2L2 9l7 7"/></svg>
+                <svg class="ghost" viewBox="0 0 24 18"><path d="M22 9H2M9 2L2 9l7 7"/></svg>
+              </span>
+            </button>
+            <button class="car-btn next" id="carNext" aria-label="Siguiente imagen" type="button">
+              <span class="arrow-track" aria-hidden="true">
+                <svg class="real" viewBox="0 0 24 18"><path d="M2 9h20M15 2l7 7-7 7"/></svg>
+                <svg class="ghost" viewBox="0 0 24 18"><path d="M2 9h20M15 2l7 7-7 7"/></svg>
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="features-intro reveal delay-1">
+          <span class="eyebrow">La casa</span>
+          <h2>Cuatro maneras de estar con nosotros</h2>
+          <p>Una mesa para comer, una bota para catar, un salón para celebrar y una estantería con lo que nos llevamos los domingos. Tú eliges qué tipo de tarde quieres.</p>
+        </div>
+        <ul class="feat-list reveal delay-2">
+          <li class="feat-item">
+            <span class="feat-num">i.</span>
+            <div class="feat-body">
+              <h3>Catas guiadas</h3>
+              <p>Cinco vinos, una hora y media, en la bodega vieja. Sábados al mediodía.</p>
+            </div>
+            <span class="feat-arrow" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 10h16M11 3l7 7-7 7"/></svg>
+            </span>
+          </li>
+          <li class="feat-item">
+            <span class="feat-num">ii.</span>
+            <div class="feat-body">
+              <h3>Menú degustación</h3>
+              <p>Siete pases que cambian cada mes. Maridaje con tres vinos de la casa.</p>
+            </div>
+            <span class="feat-arrow" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 10h16M11 3l7 7-7 7"/></svg>
+            </span>
+          </li>
+          <li class="feat-item">
+            <span class="feat-num">iii.</span>
+            <div class="feat-body">
+              <h3>Eventos privados</h3>
+              <p>Bodas pequeñas, cenas de empresa, cumpleaños. Reserva la casa entera.</p>
+            </div>
+            <span class="feat-arrow" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 10h16M11 3l7 7-7 7"/></svg>
+            </span>
+          </li>
+          <li class="feat-item">
+            <span class="feat-num">iv.</span>
+            <div class="feat-body">
+              <h3>Tienda y envíos</h3>
+              <p>Llévate la cosecha del año. Enviamos cajas de seis a toda la península.</p>
+            </div>
+            <span class="feat-arrow" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 10h16M11 3l7 7-7 7"/></svg>
+            </span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================ TRUST ================ -->
+<section class="trust" data-screen-label="Trust">
+  <div class="container">
+    <div class="trust-row reveal">
+      <span>Viticultores desde 1949</span>
+      <span>Vinos premiados D.O.</span>
+      <span>Cocina km 0</span>
+      <span>Familia que sigue al frente</span>
+    </div>
+  </div>
+</section>
+
+<!-- ================ TESTIMONIALS ================ -->
+<section class="testimonials" id="catas" data-screen-label="Testimonials">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Lo que cuentan</span>
+      <h2>Pasan por aquí. Y vuelven.</h2>
+    </div>
+    <div class="tmarquee reveal" aria-label="Lo que dicen nuestros clientes">
+      <div class="tmarquee-track" id="tmarqueeTrack">
+        <article class="tcard">
+          <span class="tmark" aria-hidden="true">“</span>
+          <p class="tquote">Llegamos a comer y nos quedamos hasta la <span class="h">hora de cenar</span>. Nadie nos miró raro. Pidieron café tres veces y siempre lo trajeron con una sonrisa.</p>
+          <div class="stars" aria-label="5 estrellas"><svg viewBox="0 0 16 16"><path d="M8 1l2 5 5 .5-3.7 3.4 1.2 5L8 12.3 3.5 14.9l1.2-5L1 6.5 6 6z"/></svg><svg viewBox="0 0 16 16"><path d="M8 1l2 5 5 .5-3.7 3.4 1.2 5L8 12.3 3.5 14.9l1.2-5L1 6.5 6 6z"/></svg><svg viewBox="0 0 16 16"><path d="M8 1l2 5 5 .5-3.7 3.4 1.2 5L8 12.3 3.5 14.9l1.2-5L1 6.5 6 6z"/></svg><svg viewBox="0 0 16 16"><path d="M8 1l2 5 5 .5-3.7 3.4 1.2 5L8 12.3 3.5 14.9l1.2-5L1 6.5 6 6z"/></svg><svg viewBox="0 0 16 16"><path d="M8 1l2 5 5 .5-3.7 3.4 1.2 5L8 12.3 3.5 14.9l1.2-5L1 6.5 6 6z"/></svg></div>
+          <div class="tperson">
+            <span class="tavatar" aria-hidden="true">E</span>
+            <div>
+              <div class="name">Elena Reverte</div>
+              <div class="meta">Cliente desde 2021 · Madrid</div>
+            </div>
+          </div>
+        </article>
+
+        <article class="tcard">
+          <span class="tmark" aria-hidden="true">“</span>
+          <p class="tquote">La cata fue como sentarse en la cocina de tus abuelos, <span class="h">pero con cinco copas delante</span>. Aprendes sin enterarte de que estás aprendiendo.</p>
+          <div class="stars" aria-label="5 estrellas"><svg viewBox="0 0 16 16"><path d="M8 1l2 5 5 .5-3.7 3.4 1.2 5L8 12.3 3.5 14.9l1.2-5L1 6.5 6 6z"/></svg><svg viewBox="0 0 16 16"><path d="M8 1l2 5 5 .5-3.7 3.4 1.2 5L8 12.3 3.5 14.9l1.2-5L1 6.5 6 6z"/></svg><svg viewBox="0 0 16 16"><path d="M8 1l2 5 5 .5-3.7 3.4 1.2 5L8 12.3 3.5 14.9l1.2-5L1 6.5 6 6z"/></svg><svg viewBox="0 0 16 16"><path d="M8 1l2 5 5 .5-3.7 3.4 1.2 5L8 12.3 3.5 14.9l1.2-5L1 6.5 6 6z"/></svg><svg viewBox="0 0 16 16"><path d="M8 1l2 5 5 .5-3.7 3.4 1.2 5L8 12.3 3.5 14.9l1.2-5L1 6.5 6 6z"/></svg></div>
+          <div class="tperson">
+            <span class="tavatar" aria-hidden="true">J</span>
+            <div>
+              <div class="name">Jaime &amp; Marta Aguilar</div>
+              <div class="meta">Boda íntima · Verano 2024</div>
+            </div>
+          </div>
+        </article>
+
+        <article class="tcard">
+          <span class="tmark" aria-hidden="true">“</span>
+          <p class="tquote">Reservamos para seis, llegamos siete y no hubo problema. <span class="h">El pan venía caliente</span>, el tinto venía fresco, y eso lo dice todo.</p>
+          <div class="stars" aria-label="5 estrellas"><svg viewBox="0 0 16 16"><path d="M8 1l2 5 5 .5-3.7 3.4 1.2 5L8 12.3 3.5 14.9l1.2-5L1 6.5 6 6z"/></svg><svg viewBox="0 0 16 16"><path d="M8 1l2 5 5 .5-3.7 3.4 1.2 5L8 12.3 3.5 14.9l1.2-5L1 6.5 6 6z"/></svg><svg viewBox="0 0 16 16"><path d="M8 1l2 5 5 .5-3.7 3.4 1.2 5L8 12.3 3.5 14.9l1.2-5L1 6.5 6 6z"/></svg><svg viewBox="0 0 16 16"><path d="M8 1l2 5 5 .5-3.7 3.4 1.2 5L8 12.3 3.5 14.9l1.2-5L1 6.5 6 6z"/></svg><svg viewBox="0 0 16 16"><path d="M8 1l2 5 5 .5-3.7 3.4 1.2 5L8 12.3 3.5 14.9l1.2-5L1 6.5 6 6z"/></svg></div>
+          <div class="tperson">
+            <span class="tavatar" aria-hidden="true">R</span>
+            <div>
+              <div class="name">Ricardo Lozano</div>
+              <div class="meta">Sommelier · Bilbao</div>
+            </div>
+          </div>
+        </article>
+
+        <article class="tcard">
+          <span class="tmark" aria-hidden="true">“</span>
+          <p class="tquote">Vinimos de paso y volvimos al día siguiente. <span class="h">El cordero al horno de leña</span> merece desviarse cien kilómetros. La carta de vinos, otros cien.</p>
+          <div class="stars" aria-label="5 estrellas"><svg viewBox="0 0 16 16"><path d="M8 1l2 5 5 .5-3.7 3.4 1.2 5L8 12.3 3.5 14.9l1.2-5L1 6.5 6 6z"/></svg><svg viewBox="0 0 16 16"><path d="M8 1l2 5 5 .5-3.7 3.4 1.2 5L8 12.3 3.5 14.9l1.2-5L1 6.5 6 6z"/></svg><svg viewBox="0 0 16 16"><path d="M8 1l2 5 5 .5-3.7 3.4 1.2 5L8 12.3 3.5 14.9l1.2-5L1 6.5 6 6z"/></svg><svg viewBox="0 0 16 16"><path d="M8 1l2 5 5 .5-3.7 3.4 1.2 5L8 12.3 3.5 14.9l1.2-5L1 6.5 6 6z"/></svg><svg viewBox="0 0 16 16"><path d="M8 1l2 5 5 .5-3.7 3.4 1.2 5L8 12.3 3.5 14.9l1.2-5L1 6.5 6 6z"/></svg></div>
+          <div class="tperson">
+            <span class="tavatar" aria-hidden="true">C</span>
+            <div>
+              <div class="name">Carmen Solana</div>
+              <div class="meta">Crítica gastronómica · Logroño</div>
+            </div>
+          </div>
+        </article>
+
+        <article class="tcard">
+          <span class="tmark" aria-hidden="true">“</span>
+          <p class="tquote">Celebré mi 60 cumpleaños con quince amigos. <span class="h">Trataron a cada uno como en casa</span>. Tres horas después seguíamos en la sobremesa. No queríamos irnos.</p>
+          <div class="stars" aria-label="5 estrellas"><svg viewBox="0 0 16 16"><path d="M8 1l2 5 5 .5-3.7 3.4 1.2 5L8 12.3 3.5 14.9l1.2-5L1 6.5 6 6z"/></svg><svg viewBox="0 0 16 16"><path d="M8 1l2 5 5 .5-3.7 3.4 1.2 5L8 12.3 3.5 14.9l1.2-5L1 6.5 6 6z"/></svg><svg viewBox="0 0 16 16"><path d="M8 1l2 5 5 .5-3.7 3.4 1.2 5L8 12.3 3.5 14.9l1.2-5L1 6.5 6 6z"/></svg><svg viewBox="0 0 16 16"><path d="M8 1l2 5 5 .5-3.7 3.4 1.2 5L8 12.3 3.5 14.9l1.2-5L1 6.5 6 6z"/></svg><svg viewBox="0 0 16 16"><path d="M8 1l2 5 5 .5-3.7 3.4 1.2 5L8 12.3 3.5 14.9l1.2-5L1 6.5 6 6z"/></svg></div>
+          <div class="tperson">
+            <span class="tavatar" aria-hidden="true">A</span>
+            <div>
+              <div class="name">Antonio Vega-Peña</div>
+              <div class="meta">Vecino del valle · Burgos</div>
+            </div>
+          </div>
+        </article>
+
+        <article class="tcard">
+          <span class="tmark" aria-hidden="true">“</span>
+          <p class="tquote">Pedimos el menú degustación sin saber muy bien dónde nos metíamos. <span class="h">Salimos sabiendo más de vino</span> que después de años de leer etiquetas.</p>
+          <div class="stars" aria-label="5 estrellas"><svg viewBox="0 0 16 16"><path d="M8 1l2 5 5 .5-3.7 3.4 1.2 5L8 12.3 3.5 14.9l1.2-5L1 6.5 6 6z"/></svg><svg viewBox="0 0 16 16"><path d="M8 1l2 5 5 .5-3.7 3.4 1.2 5L8 12.3 3.5 14.9l1.2-5L1 6.5 6 6z"/></svg><svg viewBox="0 0 16 16"><path d="M8 1l2 5 5 .5-3.7 3.4 1.2 5L8 12.3 3.5 14.9l1.2-5L1 6.5 6 6z"/></svg><svg viewBox="0 0 16 16"><path d="M8 1l2 5 5 .5-3.7 3.4 1.2 5L8 12.3 3.5 14.9l1.2-5L1 6.5 6 6z"/></svg><svg viewBox="0 0 16 16"><path d="M8 1l2 5 5 .5-3.7 3.4 1.2 5L8 12.3 3.5 14.9l1.2-5L1 6.5 6 6z"/></svg></div>
+          <div class="tperson">
+            <span class="tavatar" aria-hidden="true">L</span>
+            <div>
+              <div class="name">Lucía &amp; Pablo Mendiet</div>
+              <div class="meta">Aniversario · San Sebastián</div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================ PRICING ================ -->
+<section class="pricing" id="reservar" data-screen-label="Pricing">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Para sentarse</span>
+      <h2>Tres maneras de cruzar la puerta</h2>
+      <p>Comer rápido a mediodía, dejarse llevar por la noche, o pasarse un sábado entre barricas. Tú decides.</p>
+    </div>
+
+    <div class="plans">
+      <article class="plan reveal">
+        <span class="plan-label">Día a día</span>
+        <h3>Menú del día</h3>
+        <div class="price">
+          <span class="amt">28</span><span class="cur">€</span><span class="per">/ persona</span>
+        </div>
+        <ul>
+          <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8l3 3 7-7"/></svg>Entrante, principal, postre</li>
+          <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8l3 3 7-7"/></svg>Copa de vino de la casa</li>
+          <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8l3 3 7-7"/></svg>Pan, agua y café incluidos</li>
+          <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8l3 3 7-7"/></svg>Martes a viernes, mediodía</li>
+        </ul>
+        <div class="plan-cta"><a href="#reservar" class="btn">Reservar mesa</a></div>
+      </article>
+
+      <article class="plan featured reveal delay-1">
+        <span class="plan-badge">Más reservado</span>
+        <span class="plan-label">Noche larga</span>
+        <h3>Menú degustación</h3>
+        <div class="price">
+          <span class="amt">65</span><span class="cur">€</span><span class="per">/ persona</span>
+        </div>
+        <ul>
+          <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8l3 3 7-7"/></svg>Siete pases de temporada</li>
+          <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8l3 3 7-7"/></svg>Maridaje con tres vinos</li>
+          <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8l3 3 7-7"/></svg>Recorrido por la bodega</li>
+          <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8l3 3 7-7"/></svg>Viernes y sábado, noche</li>
+        </ul>
+        <div class="plan-cta"><a href="#reservar" class="btn">Reservar mesa</a></div>
+      </article>
+
+      <article class="plan reveal delay-2">
+        <span class="plan-label">Sábados</span>
+        <h3>Cata sabatina</h3>
+        <div class="price">
+          <span class="amt">35</span><span class="cur">€</span><span class="per">/ persona</span>
+        </div>
+        <ul>
+          <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8l3 3 7-7"/></svg>Cinco vinos de la casa</li>
+          <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8l3 3 7-7"/></svg>Tabla de embutidos y queso</li>
+          <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8l3 3 7-7"/></svg>Hora y media en la bodega</li>
+          <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8l3 3 7-7"/></svg>Sábados, 12:30 h</li>
+        </ul>
+        <div class="plan-cta"><a href="#reservar" class="btn">Reservar plaza</a></div>
+      </article>
+    </div>
+
+    <div class="pricing-cta reveal">
+      <p class="lead">¿Listo para sentarte?</p>
+      <a href="#reservar" class="btn" aria-label="Reservar tu mesa">
+        Reservar tu mesa
+        <svg class="arrow" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M1 7h12M8 2l5 5-5 5"/></svg>
+      </a>
+      <p class="note">Recomendamos reservar con dos o tres días de antelación. Los fines de semana se llenan.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================ FOOTER ================ -->
+<footer class="footer" data-screen-label="Footer">
+  <div class="container">
+    <div class="footer-brand">
+      <a href="#top" class="footer-mark" aria-label="Bodegas Monasterio">
+        <img src="assets/brand.png" alt="Bodegas Monasterio" class="footer-logo">
+      </a>
+      <p class="footer-tag">Viticultores y cocineros, en el mismo valle, desde hace tres generaciones.</p>
+      <div class="socials" aria-label="Redes sociales">
+        <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".6" fill="currentColor" stroke="none"/></svg></a>
+        <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v2H7v4h3v8h4v-8h3l1-4h-4V8a0 0 0 0 1 0 0z"/></svg></a>
+        <a href="#" aria-label="TripAdvisor"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="7" cy="13" r="3.5"/><circle cx="17" cy="13" r="3.5"/><circle cx="7" cy="13" r="1" fill="currentColor" stroke="none"/><circle cx="17" cy="13" r="1" fill="currentColor" stroke="none"/></svg></a>
+      </div>
+    </div>
+
+    <div>
+      <h4>Visítanos</h4>
+      <p>Camino del Valle, 12<br>09320 Valle del Monasterio<br>Burgos, España</p>
+    </div>
+
+    <div>
+      <h4>Contacto</h4>
+      <ul>
+        <li><a href="tel:+34947000000">+34 947 00 00 00</a></li>
+        <li><a href="mailto:hola@bodegasmonasterio.es">hola@bodegasmonasterio.es</a></li>
+        <li><a href="#reservar">Reservar online</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h4>Horario</h4>
+      <ul>
+        <li>Mar – Jue · 13:00 – 16:00</li>
+        <li>Vie – Sáb · 13:00 – 16:00 / 20:00 – 23:30</li>
+        <li>Domingo · 13:00 – 16:30</li>
+        <li>Lunes cerrado</li>
+      </ul>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2026 Bodegas Monasterio · Viticultores y cocineros desde 1949</p>
+      <div class="legal">
+        <a href="#">Aviso legal</a>
+        <a href="#">Privacidad</a>
+        <a href="#">Cookies</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ——— Local image carousel ——— */
+(function(){
+  const root = document.getElementById('localCarousel');
+  if(!root) return;
+  const slides = Array.from(root.querySelectorAll('.carousel-slide'));
+  const total = slides.length;
+  if(!total) return;
+
+  const curEl   = document.getElementById('carCur');
+  const totalEl = document.getElementById('carTotal');
+  const labelEl = document.getElementById('carLabel');
+  const titleEl = document.getElementById('carTitle');
+  const barEl   = document.getElementById('carBar');
+  const prev    = document.getElementById('carPrev');
+  const next    = document.getElementById('carNext');
+
+  let i = 0;
+  let hovered = false;
+  let inView = true;
+  let timer = null;
+  let progress = 0;
+  const DURATION = 5500; // ms per slide
+  const TICK = 50;
+
+  totalEl.textContent = String(total).padStart(2,'0');
+
+  function render(){
+    slides.forEach((s, idx) => s.classList.toggle('active', idx === i));
+    const s = slides[i];
+    curEl.textContent = String(i+1).padStart(2,'0');
+    labelEl.textContent = s.dataset.captionLabel || '';
+    titleEl.textContent = s.dataset.captionTitle || '';
+    // restart caption animation
+    [labelEl, titleEl].forEach(el => {
+      el.style.animation = 'none';
+      // force reflow
+      void el.offsetWidth;
+      el.style.animation = '';
+    });
+  }
+  function go(n){
+    i = (n + total) % total;
+    progress = 0;
+    render();
+  }
+  function tick(){
+    if(hovered || !inView) return;
+    progress += TICK;
+    barEl.style.width = Math.min(100, (progress / DURATION) * 100) + '%';
+    if(progress >= DURATION){
+      barEl.style.transition = 'none';
+      barEl.style.width = '0%';
+      go(i + 1);
+      requestAnimationFrame(() => { barEl.style.transition = ''; });
+    }
+  }
+
+  next.addEventListener('click', () => { go(i + 1); barEl.style.width = '0%'; });
+  prev.addEventListener('click', () => { go(i - 1); barEl.style.width = '0%'; });
+
+  root.addEventListener('mouseenter', () => { hovered = true; });
+  root.addEventListener('mouseleave', () => { hovered = false; });
+
+  // Keyboard support
+  root.tabIndex = 0;
+  root.addEventListener('keydown', e => {
+    if(e.key === 'ArrowRight'){ go(i + 1); barEl.style.width = '0%'; }
+    if(e.key === 'ArrowLeft') { go(i - 1); barEl.style.width = '0%'; }
+  });
+
+  render();
+  timer = setInterval(tick, TICK);
+
+  // Pause when off-screen for perf
+  if('IntersectionObserver' in window){
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(en => { inView = en.isIntersecting; });
+    }, { threshold:.1 });
+    obs.observe(root);
+  }
+})();
+
+/* ——— Testimonials marquee — clone for seamless loop ——— */
+(function(){
+  const track = document.getElementById('tmarqueeTrack');
+  if(!track) return;
+  const originals = Array.from(track.children);
+  originals.forEach(card => {
+    const clone = card.cloneNode(true);
+    clone.setAttribute('aria-hidden','true');
+    track.appendChild(clone);
+  });
+})();
+
+/* ——— Navbar scroll state ——— */
+(function(){
+  const nav = document.getElementById('nav');
+  const onScroll = () => {
+    if(window.scrollY > 50) nav.classList.add('scrolled');
+    else nav.classList.remove('scrolled');
+  };
+  onScroll();
+  window.addEventListener('scroll', onScroll, {passive:true});
+})();
+
+/* ——— IntersectionObserver reveal ——— */
+(function(){
+  const els = document.querySelectorAll('.reveal');
+  if(!('IntersectionObserver' in window)){
+    els.forEach(el => el.classList.add('in'));
+    return;
+  }
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if(e.isIntersecting){
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold:.14, rootMargin:'0px 0px -8% 0px' });
+  els.forEach(el => io.observe(el));
+})();
+
+/* ——— Mobile nav ——— */
+(function(){
+  const toggle   = document.getElementById('navToggle');
+  const nav      = document.getElementById('mobileNav');
+  const overlay  = document.getElementById('mobileNavOverlay');
+  const close    = document.getElementById('mobileNavClose');
+  if(!toggle) return;
+
+  function open(){
+    nav.classList.add('open');
+    overlay.classList.add('open');
+    nav.setAttribute('aria-hidden','false');
+    toggle.setAttribute('aria-expanded','true');
+    document.body.style.overflow='hidden';
+  }
+  function closeFn(){
+    nav.classList.remove('open');
+    overlay.classList.remove('open');
+    nav.setAttribute('aria-hidden','true');
+    toggle.setAttribute('aria-expanded','false');
+    document.body.style.overflow='';
+  }
+
+  toggle.addEventListener('click', open);
+  close.addEventListener('click', closeFn);
+  overlay.addEventListener('click', closeFn);
+  // Links that go to anchors on the same page should close the drawer
+  nav.querySelectorAll('.mobile-nav-link-close').forEach(a => a.addEventListener('click', closeFn));
+  document.addEventListener('keydown', e => { if(e.key==='Escape') closeFn(); });
+})();
+
+/* ——— Ping-pong video loop ——— */
+(function(){
+  const video = document.getElementById('heroVideo');
+  if(!video) return;
+
+  let direction = 1;          // 1 = forward, -1 = reverse
+  let reverseTimer = null;
+  const STEP_MS = 1000/30;    // 30fps step when running in reverse
+
+  function startReverse(){
+    stopReverse();
+    // Play backwards by stepping currentTime down.
+    reverseTimer = setInterval(() => {
+      if(video.currentTime <= 0.05){
+        // Reached the start — flip back to forward
+        video.currentTime = 0;
+        stopReverse();
+        direction = 1;
+        const p = video.play();
+        if(p && typeof p.catch === 'function') p.catch(()=>{});
+      } else {
+        video.currentTime = Math.max(0, video.currentTime - STEP_MS/1000);
+      }
+    }, STEP_MS);
+  }
+
+  function stopReverse(){
+    if(reverseTimer){ clearInterval(reverseTimer); reverseTimer = null; }
+  }
+
+  video.addEventListener('ended', () => {
+    // Reached the end — flip to reverse playback
+    direction = -1;
+    video.pause();
+    // Nudge slightly off the end so the first reverse step is visible
+    video.currentTime = Math.max(0, video.duration - 0.05);
+    startReverse();
+  });
+
+  // Try to start playback (handles browsers that need explicit play after load)
+  const tryPlay = () => {
+    const p = video.play();
+    if(p && typeof p.catch === 'function') p.catch(()=>{});
+  };
+  if(video.readyState >= 2) tryPlay();
+  else video.addEventListener('loadeddata', tryPlay, { once:true });
+
+  // Pause the reverse loop if the tab is hidden, resume on return
+  document.addEventListener('visibilitychange', () => {
+    if(document.hidden){
+      stopReverse();
+      video.pause();
+    } else {
+      if(direction === -1) startReverse();
+      else tryPlay();
+    }
+  });
+})();
+</script>
+</body>
+</html>
