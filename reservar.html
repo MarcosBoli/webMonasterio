@@ -925,6 +925,7 @@ legend{
             <span>Confirmar reserva</span>
             <svg class="btn-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M1 8h14M9 2l6 6-6 6"/></svg>
           </button>
+          <p id="submitError" hidden style="color:#c0392b;font-size:14px;margin-top:12px;text-align:center;"></p>
         </form>
 
         <!-- ESTADO ÉXITO -->
@@ -1517,12 +1518,39 @@ function validatePrivacidad(mark){
     btn.disabled = true;
     btn.querySelector('span:not(.spinner)').textContent = 'Enviando…';
 
-    // Simulate async submission (replace with real fetch in production)
-    setTimeout(() => {
-      form.style.display = 'none';
-      success.classList.add('visible');
-      success.scrollIntoView({behavior:'smooth', block:'center'});
-    }, 1800);
+    const API_URL = window.BODEGAS_API_URL || 'https://bodegas-monasterio-api.up.railway.app';
+
+    const payload = {
+      nombre:      document.getElementById('nombre').value.trim(),
+      email:       document.getElementById('email').value.trim(),
+      telefono:    document.getElementById('telefono').value.trim(),
+      experiencia: document.getElementById('experiencia').value,
+      fecha:       document.getElementById('fecha').value,
+      hora:        document.getElementById('hora').value,
+      personas:    Number(document.getElementById('personasVal').value),
+      mensaje:     document.getElementById('mensaje').value.trim(),
+    };
+
+    fetch(API_URL + '/api/reservas', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    })
+      .then(res => res.json().then(data => ({ status: res.status, data })))
+      .then(({ status, data }) => {
+        if (!data.ok) throw new Error(data.errors?.join(', ') || data.error || 'Error desconocido');
+        form.style.display = 'none';
+        success.classList.add('visible');
+        success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      })
+      .catch(err => {
+        btn.classList.remove('loading');
+        btn.disabled = false;
+        btn.querySelector('span:not(.spinner)').textContent = 'Confirmar reserva';
+        const errBox = document.getElementById('submitError');
+        if (errBox) { errBox.textContent = 'Error al enviar: ' + err.message; errBox.hidden = false; }
+        else alert('Error al enviar la reserva. Por favor, inténtalo de nuevo.');
+      });
   });
 })();
 
